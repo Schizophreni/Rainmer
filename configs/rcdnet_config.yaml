@@ -1,0 +1,54 @@
+name: AnyDerain
+config_name: rcdnet_config.yaml  # self name
+exp_name: rcdnetbenchmark
+
+# model architecture
+model:
+  model: models.RCDNet-RCDNet
+  num_map: 32
+  num_channel: 32
+  num_block: 4
+  inter_iter: 17
+
+# datasets
+datasets:
+  train:
+    dataloader: datasets.dataset-Anyrainloader
+    dataset_names: "synrain,gt-rain,gtav-balance"
+    preload: False  # whether to load all images first on storage\
+    crop_size: 64
+    batch_size: 16
+    num_workers: 8
+    mode: train
+  val:
+    dataloader: datasets.dataset-AnyRainDataset
+    dataset_names: "gt-rain"  # only using validation of gt-rain to select checkpoints
+    preload: False
+    mode: val
+    crop_size: 0
+
+# training
+train:
+  # dataloader
+  total_iters: 300000
+  seed: 0
+  # scheduler
+  scheduler:
+    milestones: [25, 50, 75]
+
+  # optimizer:
+  optim:
+    lr: 0.001
+    betas: [0.9, 0.999]
+  # gpu
+  gpu_id: 0
+  use_GPU: True
+
+# logger
+log:
+  print_freq: 50
+  save_freq: !!int 5000
+  save_path: ../logs
+
+
+

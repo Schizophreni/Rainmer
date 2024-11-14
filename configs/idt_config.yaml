@@ -1,0 +1,47 @@
+name: AnyDerain
+config_name: idt_config.yaml  # self name
+exp_name: idtbenchmark
+
+# model architecture
+model:
+  model: models.IDT-IDT
+  
+# datasets
+datasets:
+  train:
+    dataloader: datasets.dataset-Anyrainloader
+    dataset_names: "synrain,gt-rain,gtav-balance"
+    preload: False  # whether to load all images first on storage\
+    crop_size: 128
+    batch_size: 8
+    num_workers: 8
+    mode: train
+    n_neg: 0
+  val:
+    dataloader: datasets.dataset-AnyRainDataset
+    dataset_names: "gt-rain"  # only using validation of gt-rain to select checkpoints
+    preload: False
+    mode: val
+    crop_size: 0
+
+# training
+train:
+  # dataloader
+  total_iters: 300000
+  seed: 0
+  use_GPU: True
+  # scheduler
+  scheduler:
+    milestones: [100, 250, 350]
+
+  # optimizer:
+  optim:
+    lr: 0.0001
+  # gpu
+  gpu_id: 3
+
+# logger
+log:
+  print_freq: 50
+  save_freq: !!int 5000
+  save_path: logs

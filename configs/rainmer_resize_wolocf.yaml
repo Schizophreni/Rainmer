@@ -1,0 +1,73 @@
+name: AnyDerain
+config_name: rainmer_resize.yaml  # self name
+exp_name: rainmer_SA_chr_detg_enclr3e-4_lambda0.1_chralpha_allinone
+
+# model architecture
+model:
+  model: models.Rainmer_SA_wolocf-Rainmer
+  inp_channels: 3
+  out_channels: 3
+  dim: 48
+  base_dim: 128
+  num_blocks: [4, 6, 6, 8]
+  heads: [1, 2, 4, 8]
+  ffn_expansion_factor: 2.66
+  bias: False
+  LayerNorm_type: WithBias
+  # sparse rates
+  sparse_rates: [1/2, 2/3, 3/4, 4/5]
+  # which heads
+  knowledge_atoms: ["chromatic", "degradation", "detail"]
+
+# datasets
+datasets:
+  train:
+    dataloader: datasets.dataset_noresize-Anyrainloader
+    dataset_names: "outdoorrain,raindrop,snow"
+    preload: False  # whether to load all images first on storage\
+    crop_size: 128
+    batch_size: 4
+    num_workers: 16
+    mode: train
+    n_neg: 4
+  val:
+    dataloader: datasets.dataset_noresize-AnyRainDataset
+    dataset_names: "gt-rain"  # only using validation of gt-rain to select checkpoints
+    preload: False
+    mode: val
+    crop_size: 0
+
+# training
+train:
+  # dataloader
+  total_iters: 300000
+  stage1_iters: 0
+  use_grad_clip: true
+  aux_loss_weight: 1.0
+  seed: 100
+  accumulate_grad_step: 2
+  # scheduler
+  scheduler:
+    periods: [92000, 208000]
+    restart_weights: [1, 1]
+    eta_mins: [0.0003, 0.000001]
+
+  # optimizer:
+  optim:
+    lr: 0.0003
+    weight_decay: !!float 1e-5
+    betas: [0.9, 0.999]
+  # gpu
+  use_GPU: True
+  gpu_id: 7
+  stage2_lambda: 0.1
+
+# logger
+log:
+  print_freq: 50
+  save_freq: !!int 2500
+  save_path: logs
+
+# contrastive loss
+contrastive:
+  n_neg: 4

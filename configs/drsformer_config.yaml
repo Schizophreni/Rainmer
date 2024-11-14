@@ -1,0 +1,67 @@
+name: AnyDerain
+config_name: drsformer_config.yaml  # self name
+exp_name: drsformerbenchmark-rain200H
+
+# model architecture
+model:
+  model: models.DRSformer-DRSformer
+  inp_channels: 3
+  out_channels: 3
+  dim: 48
+  base_dim: 128
+  num_blocks: [4, 6, 6, 8]
+  heads: [1, 2, 4, 8]
+  ffn_expansion_factor: 2.66
+  bias: False
+  LayerNorm_type: WithBias
+  sparse_rates: [1/2, 2/3, 3/4, 4/5]
+  
+# datasets
+datasets:
+  train:
+    dataloader: datasets.RainDataset-Rainloader
+    data_paths: "/home1/zhangsy/rh/data/derain/Rain200H/train"
+    dataset_names: "rain200H"
+    preload: False  # whether to load all images first on storage
+    crop_size: 128
+    batch_size: 4
+    num_workers: 8
+    mode: train
+  val:
+    dataloader: datasets.RainDataset-Rainloader
+    data_paths: "/home1/zhangsy/rh/data/derain/Rain200H/test"  # only using validation of gt-rain to select checkpoints
+    preload: False
+    mode: val
+    crop_size: 0
+    batch_size: 1
+    num_workers: 8
+
+# training
+train:
+  # dataloader
+  total_iters: 300000
+  use_grad_clip: True
+  seed: 100
+  # scheduler
+  scheduler:
+    periods: [92000, 208000]
+    restart_weights: [1, 1]
+    eta_mins: [0.0003, 0.000001]
+
+  # optimizer:
+  optim:
+    lr: 0.0003
+    weight_decay: !!float 1e-5
+    betas: [0.9, 0.999]
+  # gpu
+  gpu_id: 1
+  use_GPU: True
+
+# logger
+log:
+  print_freq: 50
+  save_freq: !!int 5000
+  save_path: logs
+
+
+
