@@ -11,17 +11,17 @@ The official pytorch implementation of the paper **[Rainmer (ACMMM 2024)](https:
 
 ## Architecture
 
-[Rainmer](assets/motivation.pdf)
+[Rainmer](assets/motivation.pdf-1-4.jpg)
 
 ## Results
 
 **Derain** (more results can be found in the original paper)
 
-[](https://github.com/Schizophreni/Rainmer/raw/main/assets/derain-vis.pdf)
+[](https://github.com/Schizophreni/Rainmer/raw/main/assets/derain-vis.pdf-1-4.jpg)
 
 **Detection**
 
-[](https://github.com/Schizophreni/Rainmer/raw/main/assets/detection_more.pdf)
+[](https://github.com/Schizophreni/Rainmer/raw/main/assets/detection_more.pdf-1-4.jpg)
 
 **Relation between derain and detection**
 
