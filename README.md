@@ -11,7 +11,7 @@ The official pytorch implementation of the paper **[Rainmer (ACMMM 2024)](https:
 
 ## Architecture
 
-![Rainmer](assets/motivation.pdf-1-4.jpg)
+![Rainmer](assets/motivation.pdf-1-1.jpg)
 
 ## Results
 
@@ -21,11 +21,11 @@ The official pytorch implementation of the paper **[Rainmer (ACMMM 2024)](https:
 
 **Detection**
 
-![](https://github.com/Schizophreni/Rainmer/raw/main/assets/detection_more.pdf-1-4.jpg)
+![](https://github.com/Schizophreni/Rainmer/raw/main/assets/detection_more.pdf-1-3.jpg)
 
 **Relation between derain and detection**
 
-![](https://github.com/Schizophreni/Rainmer/raw/main/assets/psnr-ssim-map.pdf)
+![](https://github.com/Schizophreni/Rainmer/raw/main/assets/psnr-ssim-map.pdf-1-2.jpg)
 
 | Dataset (mixed) | Rain100L | Rain100H | Test100 | Test1200 | Test2800 | GT-Rain | GTAV-balance | Avg    |
 | --------------- | -------- | -------- | ------- | -------- | -------- | ------- | ------------ | ------ |
