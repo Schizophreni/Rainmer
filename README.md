@@ -13,8 +13,6 @@ The official pytorch implementation of the paper **[Rainmer (ACMMM 2024)](https:
 
 ![Rainmer](assets/motivation.pdf)
 
-
-
 ## Results
 
 **Derain** (more results can be found in the original paper)
