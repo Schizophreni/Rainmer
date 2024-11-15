@@ -17,15 +17,15 @@ The official pytorch implementation of the paper **[Rainmer (ACMMM 2024)](https:
 
 **Derain** (more results can be found in the original paper)
 
-![](https://github.com/Schizophreni/Rainmer/blob/main/assets/derain-vis.pdf)
+![](https://github.com/Schizophreni/Rainmer/raw/main/assets/derain-vis.pdf)
 
 **Detection**
 
-![](https://github.com/Schizophreni/Rainmer/blob/main/assets/detection_more.pdf)
+![](https://github.com/Schizophreni/Rainmer/raw/main/assets/detection_more.pdf)
 
 **Relation between derain and detection**
 
-![](https://github.com/Schizophreni/Rainmer/blob/main/assets/psnr-ssim-map.pdf)
+![](https://github.com/Schizophreni/Rainmer/raw/main/assets/psnr-ssim-map.pdf)
 
 | Dataset (mixed) | Rain100L | Rain100H | Test100 | Test1200 | Test2800 | GT-Rain | GTAV-balance | Avg    |
 | --------------- | -------- | -------- | ------- | -------- | -------- | ------- | ------------ | ------ |
